@@ -11,22 +11,26 @@ class Ave:
     def comer( self, comida ):
         print( "Este tipo de ave come normalmente " + comida )
 
-    def volar( self )
+    def volar( self ):
         print( "Este tipo de ave puede volar: " + self.vuelo )
 
 
-class Ganso( ave ):
+class Ganso( Ave ):
 
     def __init__( self, tipo, vuela, accion, pata ):
-        super().__init__(self, tipo, vuela)
+        super().__init__( tipo, vuela )
         self.habilidad = accion
         self.patas = pata
 
     def destreza(self):
         print( "Esta ave se puede: " + self.habilidad )
     
-class Pato( ave ):
+class Pato( Ave ):
     pass
 
-class Gallina( ave ):
+class Gallina( Ave ):
     pass
+
+
+ave_1 = Ganso( "carnivoro", True, "vuela", 2 )
+ave_1.comer( "carne" )
