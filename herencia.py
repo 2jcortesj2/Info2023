@@ -30,4 +30,3 @@ class Pato( ave ):
 
 class Gallina( ave ):
     pass
-
