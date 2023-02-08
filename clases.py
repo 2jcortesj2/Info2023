@@ -1,6 +1,7 @@
 # el metodo __str__
 
 class Person:
+  
   def __init__(self, name, age):
     self.name = name
     self.age = age
@@ -20,4 +21,5 @@ print(p1.age)
 
 # para eliminar objetos se hace 
 del p1
+print(p1)
 
