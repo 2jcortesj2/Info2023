@@ -1,5 +1,5 @@
 
-class ave:
+class Ave:
 
     def __init__(self, tipo, vuela):
         self.ave = tipo
@@ -15,7 +15,7 @@ class ave:
         print( "Este tipo de ave puede volar: " + self.vuelo )
 
 
-class ganzo( ave ):
+class Ganso( ave ):
 
     def __init__( self, tipo, vuela, accion, pata ):
         super().__init__(self, tipo, vuela)
@@ -25,10 +25,10 @@ class ganzo( ave ):
     def destreza(self):
         print( "Esta ave se puede: " + self.habilidad )
     
-class pato( ave ):
+class Pato( ave ):
     pass
 
-class gallina( ave ):
+class Gallina( ave ):
     pass
 
 
