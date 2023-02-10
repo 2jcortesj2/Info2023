@@ -1,0 +1,26 @@
+# sobre carga: 
+
+
+
+
+
+
+
+
+
+
+
+
+# Metodo anulado:
+
+
+
+
+
+
+
+
+
+
+
+
