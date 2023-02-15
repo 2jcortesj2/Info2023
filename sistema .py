@@ -25,6 +25,9 @@ class Person:
     def getGenero( self ):
         return print (self.__genero)
     
+    def guardarInfo( self ):
+        return self.__nombre, self.__cedula, self.__genero
+
 
 class Paciente( Person ):
 
@@ -88,18 +91,15 @@ class Sistema( Person ):
         return self.__numero_pacientes
     
     def ingresarPaciente( self, rol ):
-        i = '1'
-        for i in range(1000):
-            i = str(i)
-            i = Paciente() 
-            i.setName( rol )
-            i.setGenero( rol )
-            i.setCedula( rol )
-            i.assignService()
-            self.__lista_pacientes.append( i )
-            print( self.numeroDePacientes() )
-            i = i + '1'
-
+        p = Paciente() 
+        p.setName( rol )
+        p.setGenero( rol )
+        p.setCedula( rol )
+        p.assignService()
+        self.__lista_pacientes.append( p.guardarInfo() )
+        print( self.__lista_pacientes )
+        print( self.numeroDePacientes() )
+            
 
 """
 Un ejemplo para correr el codigo seria el siguienteñ
