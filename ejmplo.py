@@ -16,3 +16,4 @@ class Perro:
 mi_perro = Perro( "Samuel", "negro", "Pastor aleman", "Si" )
 mi_perro.comiendo()
 mi_perro.Race()
+

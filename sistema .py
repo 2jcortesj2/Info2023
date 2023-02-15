@@ -6,14 +6,14 @@ class Person:
         self.__genero = ""
 
     ## SETTERS ##
-    def setName( self, nombre ):
-        self.__nombre = nombre
+    def setName( self, rol ):
+        self.__nombre = input( f"Ingrese el nombre del {rol}: " )
     
-    def setCedula( self, cedula ):
-        self.__cedula = cedula
+    def setCedula( self, rol ):
+        self.__cedula = input( f"Ingrese la cedula del {rol}: " )
 
-    def setGenero( self, genero ):
-        self.__genero = genero
+    def setGenero( self, rol ):
+        self.__genero = input( f"Ingrese el genero del {rol}: " )
 
     ## GETTERS ##
     def getName( self ):
@@ -24,8 +24,7 @@ class Person:
 
     def getGenero( self ):
         return print (self.__genero)
-
-################################################################################################################################
+    
 
 class Paciente( Person ):
 
@@ -33,14 +32,12 @@ class Paciente( Person ):
         super().__init__() # hace alucion al constructor de la clase padre, sin embargo se puede poner o no 
         self.__servicio = ""
 
-    def assignService( self, servicio ):
-        self.__servicio = servicio
+    def assignService( self ):
+        self.__servicio = input( "Asignar servicio: " )
     
     def showService( self ):
         return print (self.__servicio)
 
-
-################################################################################################################################
 
 class Empleado_Hospital( Person ):
 
@@ -54,7 +51,6 @@ class Empleado_Hospital( Person ):
     def showTurn( self ):
         return print (self.__turno)
 
-################################################################################################################################
 
 class Enfermera( Empleado_Hospital ):
 
@@ -68,7 +64,6 @@ class Enfermera( Empleado_Hospital ):
     def showRange( self ):
         return print (self.__rango)
 
-################################################################################################################################
 
 class Medico( Empleado_Hospital ):
 
@@ -81,8 +76,35 @@ class Medico( Empleado_Hospital ):
     
     def showSpeciality( self ):
         return print(self.__especialidad)
+    
+
+class Sistema( Person ):
+    
+    def __init__(self):
+        self.__lista_pacientes = []
+        
+    def numeroDePacientes( self ):
+        self.__numero_pacientes = len( self.__lista_pacientes )
+        return self.__numero_pacientes
+    
+    def ingresarPaciente( self, rol ):
+        i = '1'
+        for i in range(1000):
+            i = str(i)
+            i = Paciente() 
+            i.setName( rol )
+            i.setGenero( rol )
+            i.setCedula( rol )
+            i.assignService()
+            self.__lista_pacientes.append( i )
+            print( self.numeroDePacientes() )
+            i = i + '1'
 
 
-p2 = Paciente()
-p2.setName("Juan")
-p2.getName()
+"""
+Un ejemplo para correr el codigo seria el siguienteñ
+"""
+
+
+paciente_1 = Sistema()
+paciente_1.ingresarPaciente( "Paciente" )

@@ -1,4 +1,4 @@
-import ejercicio1 as e
+import sistema as e
 
 p1 = e.Paciente()
 p1.setName( "Josue" )
