@@ -117,29 +117,36 @@ class Sistema( Person ):
 
     def verDatosPacientesDiccionario( self ):
         cedula = input( "Ingresar la cedula del pacientes que busca en el diccionario: " )
-        for p, c in enumerate( self.__diccionario_pacientes['Cedula'] ):
+        for p, c in enumerate( self.__diccionario_pacientes['Cedula'] ):  # ENUMERATE
             if cedula == c:
                 print( f"Nombre: { self.__diccionario_pacientes['Nombre'][p] }, cedula : {self.__diccionario_pacientes['Cedula'][p]}, Genero: {self.__diccionario_pacientes['Genero'][p]}" )
                 
 
-##########################################################
+################# Funcion enumerate con el for ##############
 
-p = Sistema()
+######################## FUNCIO MAIN ########################
 
-while True:
-    opcion = int( input( """
-    1- Ingresar paciente
-    2- Ver datos del paciente
-    3- Ver el numero de pacientes
-    4- Salir
-    > """ ) )
 
-    if opcion == 1:
-        p.ingresarPaciente( "Paciente" )
-    elif opcion == 2:
-        p.verDatosPacientesDiccionario()
-    elif opcion == 3:
-        p.numeroDePacientes()
-    elif opcion == 4:
-        break
+def main():
 
+    p = Sistema()
+
+    while True:
+        opcion = int( input( """
+        1- Ingresar paciente
+        2- Ver datos del paciente
+        3- Ver el numero de pacientes
+        4- Salir
+        > """ ) )
+
+        if opcion == 1:
+            p.ingresarPaciente( "Paciente" )
+        elif opcion == 2:
+            p.verDatosPacientesDiccionario()
+        elif opcion == 3:
+            p.numeroDePacientes()
+        elif opcion == 4:
+            break
+
+if __name__ == '__main__':
+    main()
