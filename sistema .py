@@ -121,6 +121,15 @@ class Sistema( Person ):
             if cedula == c:
                 print( f"Nombre: { self.__diccionario_pacientes['Nombre'][p] }, cedula : {self.__diccionario_pacientes['Cedula'][p]}, Genero: {self.__diccionario_pacientes['Genero'][p]}" )
                 
+    def modificarGenero( self ):
+        pass
+    def modificarCedula( self ):
+        pass
+    def modificarNombre( self ):
+        pass
+    def eliminarPaciente( self ):
+        pass
+
 
 ################# Funcion enumerate con el for ##############
 
@@ -136,7 +145,9 @@ def main():
         1- Ingresar paciente
         2- Ver datos del paciente
         3- Ver el numero de pacientes
-        4- Salir
+        4- Modificar datos de un paciente
+        5- Eliminar paciente
+        6- Salir
         > """ ) )
 
         if opcion == 1:
@@ -146,6 +157,10 @@ def main():
         elif opcion == 3:
             p.numeroDePacientes()
         elif opcion == 4:
+            pass
+        elif opcion == 5:
+            pass
+        elif opcion == 6:
             break
 
 if __name__ == '__main__':
