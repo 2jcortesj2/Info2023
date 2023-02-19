@@ -39,7 +39,7 @@ class Paciente( Person ):
         self.__servicio = input( "Asignar servicio: " )
     
     def showService( self ):
-        return print (self.__servicio)
+        return self.__servicio
 
 
 class Empleado_Hospital( Person ):
@@ -88,6 +88,7 @@ class Sistema( Person ):
         self.__lista_nombre = []
         self.__lista_cedula = []
         self.__lista_genero = []
+        self.__lista_servicio = []
         self.__diccionario_pacientes = {}
 
     def numeroDePacientes( self ):
@@ -104,7 +105,8 @@ class Sistema( Person ):
         self.__lista_nombre.append( p.getName() )
         self.__lista_cedula.append( p.getCedula() )
         self.__lista_genero.append( p.getGenero() )
-        self.__diccionario_pacientes.update( {'Nombre' : self.__lista_nombre, 'Cedula' : self.__lista_cedula, 'Genero' : self.__lista_genero} )
+        self.__lista_servicio.append( p.showService() )
+        self.__diccionario_pacientes.update( {'Nombre' : self.__lista_nombre, 'Cedula' : self.__lista_cedula, 'Genero' : self.__lista_genero, 'Servicio' : self.__lista_servicio} )
         print( self.__diccionario_pacientes )
         #print( self.__lista_pacientes )
         #print( self.numeroDePacientes() )
@@ -119,16 +121,43 @@ class Sistema( Person ):
         cedula = input( "Ingresar la cedula del pacientes que busca en el diccionario: " )
         for p, c in enumerate( self.__diccionario_pacientes['Cedula'] ):  # ENUMERATE
             if cedula == c:
-                print( f"Nombre: { self.__diccionario_pacientes['Nombre'][p] }, cedula : {self.__diccionario_pacientes['Cedula'][p]}, Genero: {self.__diccionario_pacientes['Genero'][p]}" )
+                print( 
+                    f"""
+                    Nombre: { self.__diccionario_pacientes['Nombre'][p] }, 
+                    cedula : {self.__diccionario_pacientes['Cedula'][p]}, 
+                    Genero: {self.__diccionario_pacientes['Genero'][p]}
+                    Servicio: {self.__diccionario_pacientes['Servivio'][p]}"""
+                    )
+            else:
+                print( "No hay ningun paciente que coincida con esa cedula" )
                 
     def modificarGenero( self ):
-        pass
+        cedula = input( "Ingrese la cedula de la persona que desea modificar el genero: " )
+        for p, id in enumerate(self.__diccionario_pacientes['Cedula']):
+            if cedula == id:
+                self.__diccionario_pacientes['Genero'][p] = input( "Ingrese el nuevo genero del paciente: " )
+
     def modificarCedula( self ):
-        pass
+        cedula = input( "Ingrese la cedula que introdujo anteriormente por error: " )
+        for p, id in enumerate(self.__diccionario_pacientes['Cedula']):
+            if cedula == id:
+                self.__diccionario_pacientes['Cedula'][p] = input( "Ingrese la nueva cedula del paciente: " )
+
     def modificarNombre( self ):
-        pass
+        cedula = input( "Ingrese la cedula de la persona que desea modificar el nombre: " )
+        for p, id in enumerate(self.__diccionario_pacientes['Cedula']):
+            if cedula == id:
+                self.__diccionario_pacientes['Nombre'][p] = input( "Ingrese el nombre del paciente: " )
+        
     def eliminarPaciente( self ):
-        pass
+        cedula = input( "Ingrese la cedula del paciente que desea eliminar: " )
+        for p, id in enumerate( self.__diccionario_pacientes['Cedula'] ):
+            if cedula == id:
+                del self.__diccionario_pacientes['Cedula'][p]
+                del self.__diccionario_pacientes['Genero'][p]
+                del self.__diccionario_pacientes['Nombre'][p]
+                del self.__diccionario_pacientes['Servicio'][p]
+                print( "Paciente eliminado con exito" )
 
 
 ################# Funcion enumerate con el for ##############
@@ -145,9 +174,11 @@ def main():
         1- Ingresar paciente
         2- Ver datos del paciente
         3- Ver el numero de pacientes
-        4- Modificar datos de un paciente
-        5- Eliminar paciente
-        6- Salir
+        4- Modificar genero de un paciente
+        5- Modificar cedula de un paciente
+        6- Modificar nombre de un paciente
+        7- Eliminar paciente
+        8- Salir
         > """ ) )
 
         if opcion == 1:
@@ -157,10 +188,14 @@ def main():
         elif opcion == 3:
             p.numeroDePacientes()
         elif opcion == 4:
-            pass
+            p.modificarGenero()
         elif opcion == 5:
-            pass
+            p.modificarCedula()
         elif opcion == 6:
+            p.modificarNombre()
+        elif opcion == 7:
+            p.eliminarPaciente()
+        elif opcion == 8:
             break
 
 if __name__ == '__main__':
