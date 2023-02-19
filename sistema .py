@@ -198,5 +198,5 @@ def main():
         elif opcion == 8:
             break
 
-if __name__ == '__main__':
+if __name__ == '__main__': # ya viene definido asi para que ccorra el sistema
     main()
