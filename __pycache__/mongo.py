@@ -1,4 +1,4 @@
-import pymongo 
+import pymongo
 
 client = pymongo.MongoClient("mongodb+srv://josuepaniagua:Ba5319466@cluster0.megrtoc.mongodb.net/?retryWrites=true&w=majority")
 db = client.test
