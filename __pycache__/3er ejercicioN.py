@@ -1,4 +1,5 @@
 import pymongo
+import json 
 
 class Medicamento:
 
@@ -88,6 +89,21 @@ class Mascota:
         lista = { "$set": { "Medicamento": medicamento } }
         self.__mascota.update_one( histo, lista )
 
+    ################### METODO EN MASCOTA PARA PODER AGREGAR OBJETO #####################
+
+"""
+    def MascotaResumir( self, mascota ): 
+        mascota = Mascota()
+        name = mascota.MascotaVerNombre()
+        type = mascota.MascotaVerTipo()
+        weight = mascota.MascotaVerPeso()
+        date = mascota.MascotaVerFechaIngreso()
+        med_num = mascota.MascotaVerHistoria()
+        medicine = mascota.MascotaVerMedicamento()
+        return { "Nombre": name, "Historia": med_num, "Gato o perro": type, "Fecha": date, "Peso": weight, "Medicamento": medicine }
+"""
+
+##########################################################################################
 
 class Sistema:
 
@@ -104,7 +120,8 @@ class Sistema:
         return lista[-1][ "Medicamento" ]
 
     def SistemaIngresarMascota( self, mascota ):
-        self.__sistema.insert_one( mascota )
+        a_json = json.dumps( mascota )
+        self.__sistema.insert_one( a_json )
 
     def SistemaVerFechaIngreso( self, numHisCli ):
         lista = list( self.__sistema.find( { "Historia": numHisCli } ) )
@@ -192,21 +209,37 @@ def main():
             pet.MascotaAsignarTipo( type )
             pet.MascotaAsignarPeso( weight )
             pet.MascotaAsignarFechaIngreso( date )
-            ###### ACA NO SIRVE #####################################
-            mascota = { "Mascota": pet }
-            sistema.SistemaIngresarMascota( mascota )
+            pet.MascotaAsignarMedicamento( lista_medicamentos )
+
+############################# NO FUNCIONA #############################
+
+            sistema.SistemaIngresarMascota( pet )
 
             print( f"Mascota {name} ingresada..." )
 
-        elif opcion == 2: # ELIMINAR MASCOTA
-            pass
+        elif opcion == '2': # ELIMINAR MASCOTA
+            
+            num_historia = validarInt( input( "Ingrese el numero de la historia clinica que desea eliminar: " ) )
+            if sistema.SistemaVerificarMascota == False:
+                print( "El numero de la historia clinica ingresado no existe..." )
+                continue
+            
 
-        elif opcion == 3: # FECHA DE INGRESO DE LA MASCOTA
+        elif opcion == '3': # FECHA DE INGRESO DE LA MASCOTA
+            
+            num_historia = validarInt( input( "Ingrese el numero de la historia clinica que desea eliminar: " ) )
+            if sistema.SistemaVerificarMascota == False:
+                print( "El numero de la historia clinica ingresado no existe..." )
+                continue
+            
+        elif opcion == '4': # VER LISTA DE MEDICAMENTOS (que se esta administrando a una mascota)
+            
             pass
-        elif opcion == 4: # VER LISTA DE MEDICAMENTOS
-            pass
-        elif opcion == 5: # VER NUMERO DE MASCOTAS
-            pass
+            
+        elif opcion == '5': # VER NUMERO DE MASCOTAS
+        
+            print( sistema.SistemaVerNumeroDeMascotas() )
+
         else:
             print( "Opcion no valida" )
 
