@@ -6,23 +6,25 @@ class Medicamento:
         my_data_base = client[ "Tarea" ]
         self.__medicamentos = my_data_base[ "Medicamentos" ]
     
-    def verNombre( self, nombre ):
-        for x in self.__medicamentos.find( {"Nom_Medicamento": nombre} ):
-            print( f"Nombre: {x['Nom_Medicamento']}" )
+    def verNombreMed( self, nombre ):
+        pass
 
-    def verDosis( self, nombre ):
-        for x in self.__medicamentos.find( {"Nom_Medicamento": nombre} ):
-            print( f"Nombre: { x['Dosis_medicamento'] }" )
+    def verDosisMed( self, nombre ):
+        pass
     
-    def asignarNombreDosis( self, nombre_med, dosis_med ):
-        medicamento = { "Nom_Medicamento": nombre_med, "Dosis_medicamento": dosis_med }
-        return self.__medicamentos.insert_one( medicamento )
+    def asignarNombreMed( self, nombre_med ):
+        medicamento = self.__medicamentos( { "Nombre medicamento": nombre_med } )
+        self.__medicamentos.insert_one( medicamento )
 
+    def asignarDosisMed( self, nombre_med, dosis_med ):
+        my_medicamento = { "Nombre medicamento": nombre_med }
+        my_dosis = { "$set" : { "Dosis": dosis_med } }
 
 class Mascota:
 
-    def __init__( self,  ):
-
+    def __init__( self, client ):
+        my_data_base = client[ "Tarea" ]
+        self.__mascota = my_data_base[ "Mascota" ]
         self.__nombre = ""
         self.__tipo = ""
         self.__num_historia = 0
