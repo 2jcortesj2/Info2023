@@ -117,6 +117,7 @@ def validarInt( a ):
 
 ############################################################################
 
+
 def main():
 
     client = pymongo.MongoClient( "mongodb+srv://josuepaniagua:Ba5319466531@cluster0.megrtoc.mongodb.net/?retryWrites=true&w=majority" )
