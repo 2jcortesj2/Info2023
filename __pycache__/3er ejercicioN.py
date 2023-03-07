@@ -93,8 +93,11 @@ class Sistema:
         lista = list( self.__mascota.find() )
         return len( lista )
 
-    def salir( self ): # ESTE NO SE UTILIZA
-        pass
+    # ESTE METODO SIRVE SI SE QUIERE SALIR POR MEDIO DE ESTE, YO PUSE UN BREAK
+    # def salir( self, bandera ): 
+    #     bandera = False
+    #     return bandera
+
 
     # ALGUNOS METODOS ADICIONALES PARA QUE EL CODIGO SEA MAS FUNCIONAL
 
