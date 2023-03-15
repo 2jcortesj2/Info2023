@@ -15,7 +15,7 @@ ax.plot([1, 2, 3, 4], [1, 4, 2, 3]) # para definir los puntos de la grafica
 ax.grid() # para que quede con los cuadros divididos
 #plt.show()
 
-
+# la parte de numpy
 np.random.seed( 19680801 )
 data = {'a' : np.arange(50),
         'c' : np.random.randint(0, 50, 50),
@@ -23,8 +23,9 @@ data = {'a' : np.arange(50),
 data['b'] = data['a'] + 10 * np.random.randn(50)
 data['d'] = np.abs(data['d']) * 100
 
+# es la parte de matplotlib
 fig, ax = plt.subplots( figsize= (5, 2.7), layout= 'constrained' )
-ax.scatter('a', 'b', c= 'c', s= 'd', data = data)
+ax.scatter('a', 'b', c= 'c', s= 'd', data= data)
 ax.plot(data['a'], label= "a", c= "#1AEA8F")
 # ax.scatter(data['a'], data['b'],c='k')
 ax.set_xlabel( 'entry a' )
