@@ -42,6 +42,8 @@ withoutnan = withnan.dropna() # quita los nan que hayan en la serie
 print( withnan )
 print( withoutnan )
 
+
+# ACA SE ABRE EL ARCHIVO        
 current = os.getcwd()
 file = glob.glob( current + '/*.csv' )
 #print( current )
@@ -88,7 +90,10 @@ print(mmse.iloc[0]) # para obtener un dato de la tabla se pone la posicion, sola
 
 
 
-
+# mmse.reset_index()
+# mmse['indice'] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ,1, 1, 1, 1 ]
+# mmse.set_index('indice', inplace= True)
+# print( mmse )
 
 
 
