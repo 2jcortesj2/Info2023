@@ -1,0 +1,54 @@
+# EJERCICIO 7, no incluir el total
+import glob 
+import os
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import random as r
+
+
+current = os.getcwd() + '\Archivos'
+file = glob.glob( current + '\*.csv' )
+mmse = pd.read_csv( file[2], sep= ';' )
+
+mmse_copy = mmse.copy()
+mmse_copy = mmse_copy.reset_index()
+mmse_copy = mmse_copy.drop( 'Total', axis= 1 )
+
+print( mmse_copy )
+
+
+# EJERCICIO 8, Lea los datos de Temperatura y muéstrelos usandoun diagrama de dispersión.
+file1 = glob.glob( current + '\*.xlsx' )
+evaluacion = pd.read_excel( file1[0] )
+
+# Ahora vamos a hacer el grafico de dispercion con la columna de temperaturas
+sns.regplot( x= 'Codigo', y= 'Temperatura',  data= evaluacion, fit_reg= False )
+plt.show()
+
+# EJERCICIO 9, Lea  los  datos  del  total  del  MMSE  y  muéstrelosmediante un grá+fico circular
+labels = [i for i in mmse['Total']]
+colores = []
+colors = ['green', 'black', 'gray', 'red', 'yellow', 'teal', 'blue', 'green']
+datos = []
+for dato in mmse['Total']:
+    if dato in datos:
+        posicion = datos.index(dato)
+        colorPosi = colores[posicion]
+        colores.append(colorPosi)
+    else:
+        colores.append( r.choice( colors ) )
+    datos.append(dato)
+
+print(datos)
+print( colores )
+plt.pie( mmse['Total'], labels= labels, colors=colores  )
+plt.show()
+
+
+
+
+
+
+
+

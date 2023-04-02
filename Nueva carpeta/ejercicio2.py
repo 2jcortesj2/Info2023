@@ -2,16 +2,17 @@ import pandas as pd
 import glob 
 import os 
 
-current = os.getcwd()
+current = os.getcwd() + '\Archivos'
+print( current )
 file = glob.glob( current + '/*.csv' )
+print( file )
 file2 = glob.glob( current + '/*.xlsx' )
 mmse1 = pd.read_csv( file[2], sep= ';' )
 mmse2 = pd.read_excel( file2[0] )
 
 new = pd.merge( mmse1, mmse2, on= 'Codigo' )
-new.to_excel('resultado.xlsx', index=False)
 
-
+# new.to_excel('resultado.xlsx', index=False)
 # CREE UN ARCHIVO DE EXCEL CON LOS ARCHIVOS CONCATENADOS PARA VER MEJOR #
 # new.to_excel('resultado.xlsx', index=False)
 #########################################################################
