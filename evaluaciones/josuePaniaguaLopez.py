@@ -11,9 +11,9 @@ import seaborn as sns
 class Sistema:
 
     def __init__( self, client ):
-        my_data_base = client[ "Evaluacion_2" ]
-        self.__senalData = my_data_base[ "señal" ]
-        self.__senalContinua = []
+        my_data_base = client[ "Evaluacion_2" ] # base de datos
+        self.__senalData = my_data_base[ "señal" ] # coleccion
+        self.__senalContinua = [] 
         self.__senal = []
         self.__cedula = ''
 
@@ -39,8 +39,10 @@ class Sistema:
         c = { "Cedula": self.__cedula }
         d = { "$set": { "Señal": ruta } }
         self.__senalData.update_one(c, d)
+
         cargar = sio.loadmat( ruta )
         self.__senal = cargar["data"]
+
         sensores = self.__senal.shape[0] 
         puntos = self.__senal.shape[1]
         epocas = self.__senal.shape[2]
@@ -62,9 +64,11 @@ class Sistema:
     # METODOS PARA IMPRIMIR POR CONSOLA
     def imprimirTamañoSeñal( self ):  
         cedula = self.__senalData.find_one( {"Cedula": self.__cedula} )
+
         ruta = cedula['Señal']
         cargar = sio.loadmat( ruta )
         senal = cargar["data"] 
+
         print( "La dimension es: ", senal.ndim )
         print( "Forma: ", senal.shape ) 
 
@@ -92,7 +96,9 @@ class Sistema:
         plt.subplots(1)
         plt.plot(self.__senal[0,:,0], c= color)
         plt.savefig("Señal color determinado.png")
+
         self.asignarImagenSenal("Señal color determinado")
+
         plt.show()
         
     def histogramaPromedioSeñal( self ): 
@@ -104,16 +110,24 @@ class Sistema:
     def imagenCalor( self ):
         new = self.__senal[0, :100, :-100]
         sns.heatmap( new, cmap= "viridis" )
-        plt.savefig("Imagen Calor.png")        
+
+        plt.savefig("Imagen Calor.png")      
+
         self.asignarMapaCalor("Imagen Calor")
+        
         plt.show()
 
-    def imagenBlancoNegro( self ): # tambien hay que guardarla
+
+
+    def imagenBlancoNegro( self  ): # tambien hay que guardarla
         imagen = cv2.imread('Imagen Calor.png')
         imgGris = cv2.cvtColor(imagen, cv2.COLOR_BGR2GRAY)
-        cv2.imshow('Heatmap', imgGris)
-        cv2.imwrite('ImagenCalorBlancoNegro.png', imgGris) 
+        cv2.imshow('Heatmap', imgGris) # para mostrarla
+
+        cv2.imwrite('ImagenCalorBlancoNegro.png', imgGris)  # guarda la imagen
+        
         cv2.waitKey(0)
+
 
 ########################OTROS METODOS#################################################################
 
