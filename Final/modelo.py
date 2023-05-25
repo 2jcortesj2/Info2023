@@ -31,6 +31,15 @@ class Circle:
         for position in self.positions:
             pygame.draw.circle(surface, GREEN, (position[0], position[1]), 20)
 
+class Stop:
+    pass
+
+class Reflex:
+    pass
+
+class User:
+    pass
+
 # PYGAME
 pygame.init()
 
@@ -66,8 +75,11 @@ while run:
                 game_over = True
 
     # Dibujos de la pantalla
-    screen.fill(BLACK)
+    screen.fill(WHITE)
     circle.draw(screen)
+    square = pygame.Surface([100, 100])
+    screen.blit(square, (100, 225))
+    
 
     # Actualizar la pantalla 
     pygame.display.update()
